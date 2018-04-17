@@ -154,10 +154,10 @@
             </objects>
             <point key="canvasLocation" x="40.799999999999997" y="884.70764617691157"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Controller-->
         <scene sceneID="KUE-ZN-BIA">
             <objects>
-                <tabBarController id="DhM-o2-A7C" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainMenu" id="DhM-o2-A7C" customClass="MainTabController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TxV-Z2-WdI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -17,18 +17,6 @@ class LoginViewController: UIViewController {
     
     var newUser: Bool = false
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if(Auth.auth().currentUser != nil){
-            performSegue(withIdentifier: "AuthProcessor", sender: self)
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @IBAction func LoginOptionChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -56,20 +44,24 @@ class LoginViewController: UIViewController {
     func handleAuth(email: String, password: String){
         if(newUser){
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                if(error == nil){
-                    print("cool")
-                    self.performSegue(withIdentifier: "AuthProcessor", sender: self)
-                }
-                else{
-                    print("Uncool")
-                    print("\(error.debugDescription)")
-                }
+                self.handleFirebaseResponse(error: error)
             }
         }
         else{
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                
+                self.handleFirebaseResponse(error: error)
             }
+        }
+    }
+    
+    func handleFirebaseResponse(error: Error?){
+        if(error == nil){
+            print("cool")
+            self.performSegue(withIdentifier: "AuthProcessor", sender: self)
+        }
+        else{
+            print("Uncool")
+            print("\(error.debugDescription)")
         }
     }
 
