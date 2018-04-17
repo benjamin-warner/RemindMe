@@ -45,7 +45,7 @@
         <!--Profile-->
         <scene sceneID="VUv-F1-nwu">
             <objects>
-                <viewController id="pxi-1L-P6z" sceneMemberID="viewController">
+                <viewController id="pxi-1L-P6z" customClass="ProfileViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vJx-2Q-42s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,10 +83,10 @@
             </objects>
             <point key="canvasLocation" x="2064" y="553"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="ieU-4j-6Eu">
             <objects>
-                <viewController id="FPp-v5-ocT" sceneMemberID="viewController">
+                <viewController id="FPp-v5-ocT" customClass="LoginViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bPC-JU-eZG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,6 +111,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="Log in"/>
                                 <connections>
+                                    <action selector="LoginAction:" destination="FPp-v5-ocT" eventType="touchUpInside" id="zG6-OA-wvx"/>
                                     <segue destination="DhM-o2-A7C" kind="show" id="AIw-Kr-kqy"/>
                                 </connections>
                             </button>
@@ -135,11 +136,19 @@
                                     <segment title="Log In"/>
                                     <segment title="Register"/>
                                 </segments>
+                                <connections>
+                                    <action selector="LoginOptionChanged:" destination="FPp-v5-ocT" eventType="valueChanged" id="pRh-6z-Vdy"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="moB-Wz-eXN"/>
                     </view>
+                    <connections>
+                        <outlet property="LoginActionButton" destination="IPu-Lh-VHB" id="cDi-Wc-A0x"/>
+                        <outlet property="userEmail" destination="NYx-aW-MCx" id="fNl-CO-AtU"/>
+                        <outlet property="userPassword" destination="y8z-9i-rXI" id="5LP-zP-1SY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fto-Wn-eLe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
