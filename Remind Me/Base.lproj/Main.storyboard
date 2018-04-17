@@ -112,7 +112,6 @@
                                 <state key="normal" title="Log in"/>
                                 <connections>
                                     <action selector="LoginAction:" destination="FPp-v5-ocT" eventType="touchUpInside" id="zG6-OA-wvx"/>
-                                    <segue destination="DhM-o2-A7C" kind="show" id="AIw-Kr-kqy"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y8z-9i-rXI">
@@ -148,6 +147,7 @@
                         <outlet property="LoginActionButton" destination="IPu-Lh-VHB" id="cDi-Wc-A0x"/>
                         <outlet property="userEmail" destination="NYx-aW-MCx" id="fNl-CO-AtU"/>
                         <outlet property="userPassword" destination="y8z-9i-rXI" id="5LP-zP-1SY"/>
+                        <segue destination="DhM-o2-A7C" kind="show" identifier="AuthProcessor" id="qAi-Qp-h6e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fto-Wn-eLe" userLabel="First Responder" sceneMemberID="firstResponder"/>
