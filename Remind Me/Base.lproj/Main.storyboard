@@ -70,6 +70,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Log Out"/>
                                 <connections>
+                                    <action selector="logOut:" destination="pxi-1L-P6z" eventType="touchUpInside" id="a0k-Kv-CBB"/>
                                     <segue destination="FPp-v5-ocT" kind="show" id="7OS-iB-Mp5"/>
                                 </connections>
                             </button>
