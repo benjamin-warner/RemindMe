@@ -87,6 +87,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Add ToDos" id="M0c-g2-yPK"/>
                     <connections>
+                        <outlet property="todoDate" destination="qPz-37-uyl" id="Tgu-Kw-CkU"/>
                         <outlet property="todoText" destination="GCF-eg-hZm" id="Lmv-qe-Tbu"/>
                     </connections>
                 </viewController>
