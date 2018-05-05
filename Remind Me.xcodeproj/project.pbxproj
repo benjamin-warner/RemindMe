@@ -17,7 +17,6 @@
 		4358E34B20869D5600A0DC81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4358E34A20869D5500A0DC81 /* GoogleService-Info.plist */; };
 		4358E34F2086AD7900A0DC81 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4358E34E2086AD7900A0DC81 /* MainTabController.swift */; };
 		43AF774D209DF950007EE3A8 /* AddToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AF774C209DF94F007EE3A8 /* AddToDoViewController.swift */; };
-		43AF774F209DFE43007EE3A8 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AF774E209DFE43007EE3A8 /* ToDo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +31,6 @@
 		4358E34A20869D5500A0DC81 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4358E34E2086AD7900A0DC81 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		43AF774C209DF94F007EE3A8 /* AddToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToDoViewController.swift; sourceTree = "<group>"; };
-		43AF774E209DFE43007EE3A8 /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
 		8559DE49034986CD9B466517 /* Pods-Remind Me.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remind Me.release.xcconfig"; path = "Pods/Target Support Files/Pods-Remind Me/Pods-Remind Me.release.xcconfig"; sourceTree = "<group>"; };
 		96AD54F485CA96A950D1A1B5 /* Pods-Remind Me.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Remind Me.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Remind Me/Pods-Remind Me.debug.xcconfig"; sourceTree = "<group>"; };
 		BE3F654842D2C2C4A02D755C /* Pods_Remind_Me.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Remind_Me.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,7 +87,6 @@
 				433135602086924100E6607C /* LoginViewController.swift */,
 				4358E34E2086AD7900A0DC81 /* MainTabController.swift */,
 				43AF774C209DF94F007EE3A8 /* AddToDoViewController.swift */,
-				43AF774E209DFE43007EE3A8 /* ToDo.swift */,
 			);
 			path = "Remind Me";
 			sourceTree = "<group>";
@@ -226,7 +223,6 @@
 				433135612086924100E6607C /* LoginViewController.swift in Sources */,
 				4331355120867F9F00E6607C /* ProfileViewController.swift in Sources */,
 				43AF774D209DF950007EE3A8 /* AddToDoViewController.swift in Sources */,
-				43AF774F209DFE43007EE3A8 /* ToDo.swift in Sources */,
 				4358E34F2086AD7900A0DC81 /* MainTabController.swift in Sources */,
 				4331354F20867F9F00E6607C /* AppDelegate.swift in Sources */,
 			);
