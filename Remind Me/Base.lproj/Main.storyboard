@@ -159,7 +159,7 @@
         <scene sceneID="KUE-ZN-BIA">
             <objects>
                 <tabBarController storyboardIdentifier="MainMenu" id="DhM-o2-A7C" customClass="MainTabController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TxV-Z2-WdI">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="TxV-Z2-WdI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
