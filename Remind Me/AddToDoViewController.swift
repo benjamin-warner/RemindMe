@@ -16,23 +16,19 @@ class AddToDoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Looks for single or multiple taps.
+        
+        // This allows to hide the keyboard on tapping another location.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(AddToDoViewController.dismissKeyboard))
-        
-        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
         tap.cancelsTouchesInView = false
-        
         view.addGestureRecognizer(tap)
     }
     
-    //Calls this function when the tap is recognized.
-    override func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
-    }
-    
     @IBAction func onSubmit(_ sender: UIButton) {
-        let text = todoText.text ?? "No description"
+        var text = todoText.text!
+        todoText.text = ""
+        if(text == ""){
+            text = "No description."
+        }
         let dateUnix = Int(todoDate.date.timeIntervalSince1970)
         
         // Get firebase Database reference, User ID
@@ -51,6 +47,7 @@ class AddToDoViewController: UIViewController {
     }
 }
 
+// This allows to hide the keyboard on tapping another location.
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
