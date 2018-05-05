@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if(Auth.auth().currentUser != nil){
             self.window = UIWindow(frame: UIScreen.main.bounds)
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let exampleViewController: MainTabController = mainStoryboard.instantiateViewController(withIdentifier: "MainMenu") as! MainTabController
+            let exampleViewController: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "MainMenu") as! UITabBarController
         
             self.window?.rootViewController = exampleViewController
             self.window?.makeKeyAndVisible()

@@ -13,18 +13,65 @@
         <!--ToDo List-->
         <scene sceneID="ibK-Fv-TOd">
             <objects>
-                <viewController id="uZg-3V-ad7" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kc6-YB-7oJ">
+                <viewController id="uZg-3V-ad7" customClass="TodoListViewController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="sdm-iz-NIB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="TL9-zg-mxg"/>
-                    </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todoCell" rowHeight="89" id="hD3-Qz-9zD" customClass="ToDoTableViewCell" customModule="Remind_Me" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="89"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hD3-Qz-9zD" id="W4o-NH-a3d">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="88.666666666666671"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ag-F6-T1T">
+                                            <rect key="frame" x="20" y="11" width="31" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUc-sq-AXz">
+                                            <rect key="frame" x="70" y="11" width="324" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tC1-5T-t4D">
+                                            <rect key="frame" x="20" y="40" width="374" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHH-GJ-kDQ">
+                                            <rect key="frame" x="70" y="11" width="324" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="BHH-GJ-kDQ" id="Y7r-hm-Mrq"/>
+                                    <outlet property="descriptionLabel" destination="tC1-5T-t4D" id="ssG-Le-JwW"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="uZg-3V-ad7" id="jHd-YX-Sw2"/>
+                            <outlet property="delegate" destination="uZg-3V-ad7" id="qaO-po-b4L"/>
+                        </connections>
+                    </tableView>
                     <tabBarItem key="tabBarItem" title="ToDo List" id="YTE-iJ-D8k"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccd-c7-xKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2063" y="1277"/>
+            <point key="canvasLocation" x="2062.3188405797105" y="1276.6304347826087"/>
         </scene>
         <!--Add ToDos-->
         <scene sceneID="W3S-Kl-0A1">
@@ -208,10 +255,10 @@
             </objects>
             <point key="canvasLocation" x="40.799999999999997" y="884.70764617691157"/>
         </scene>
-        <!--Main Tab Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="KUE-ZN-BIA">
             <objects>
-                <tabBarController storyboardIdentifier="MainMenu" id="DhM-o2-A7C" customClass="MainTabController" customModule="Remind_Me" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainMenu" id="DhM-o2-A7C" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" itemPositioning="fill" id="TxV-Z2-WdI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
