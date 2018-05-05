@@ -21,8 +21,9 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Get a table cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell", for: indexPath)
-        cell.textLabel?.text = "test"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell", for: indexPath) as! ToDoTableViewCell
+        cell.descriptionLabel?.text = "Thing to do"
+        cell.dateLabel?.text = "Someday..."
         return cell
     }
 }
