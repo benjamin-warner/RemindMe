@@ -11,9 +11,14 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var currentCount: UILabel!
+    @IBOutlet weak var finishedCount: UILabel!
+    @IBOutlet weak var avgTime: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        userName.text = Auth.auth().currentUser!.email
     }
 
     override func didReceiveMemoryWarning() {

@@ -36,13 +36,13 @@ class AddToDoViewController: UIViewController {
         let userId: String = Auth.auth().currentUser!.uid
     
         // Let firebase generate an ID for the new database entry
-        let key = dbReference.child(userId).child("ToDos").childByAutoId().key
+        let key = dbReference.child(userId+"/ToDos").childByAutoId().key
         
         // Create new ToDo Object
         let newToDo = ["Text" : text, "Time" : dateUnix] as [String : Any]
         
         // Update database with new ToDo
-        let update = ["\(userId)/\(key)" : newToDo]
+        let update = ["\(userId)/ToDos/\(key)" : newToDo]
         dbReference.updateChildValues(update)
     }
 }

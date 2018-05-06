@@ -22,10 +22,10 @@ class TodoListViewController: UITableViewController {
         super.viewDidLoad()
         
         let dbReference = Database.database().reference()
-        let userId: String = Auth.auth().currentUser!.uid
+        let userToDoDirectory: String = Auth.auth().currentUser!.uid + "/ToDos"
         
         // Listen for new todos in the Firebase database
-        dbReference.child(userId).queryOrderedByKey().observe(.childAdded, with: { (snapshot) -> Void in
+        dbReference.child(userToDoDirectory).queryOrderedByKey().observe(.childAdded, with: { (snapshot) -> Void in
             let snapshotValue = snapshot.value as? NSDictionary
             let text = snapshotValue?["Text"] as? String
             let time = snapshotValue?["Time"] as? Int
@@ -51,11 +51,14 @@ class TodoListViewController: UITableViewController {
         // Get a table cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell", for: indexPath) as! ToDoTableViewCell
         cell.descriptionLabel?.text = todos[indexPath.row].Text
+        
+        // Format date to string
         let date = Date(timeIntervalSince1970: Double(todos[indexPath.row].Time))
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         let formattedDate = formatter.string(from: date)
         cell.dateLabel?.text = formattedDate
+        
         return cell
     }
 }
