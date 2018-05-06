@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseAuth
+import Firebase
 
 class ProfileViewController: UIViewController {
 
@@ -18,7 +18,23 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Get current user's email
         userName.text = Auth.auth().currentUser!.email
+        
+        // Get Firebase references
+        let dbReference = Database.database().reference()
+        let userId = Auth.auth().currentUser!.uid
+        
+        // Get ToDo count
+        dbReference.child(userId).child("Count").observe(.value, with: { (snapshot) in
+            if let count = snapshot.value as? Int {
+                self.currentCount.text = String(count)
+            }
+            else{
+                self.currentCount.text = String(0)
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {

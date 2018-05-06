@@ -25,10 +25,15 @@ class AddToDoViewController: UIViewController {
     
     @IBAction func onSubmit(_ sender: UIButton) {
         var text = todoText.text!
+        
+        // Clear Text input
         todoText.text = ""
+        
+        // Set to default value if empty
         if(text == ""){
             text = "No description."
         }
+        // Get Unix Time of selected Date
         let dateUnix = Int(todoDate.date.timeIntervalSince1970)
         
         // Get firebase Database reference, User ID
@@ -38,12 +43,24 @@ class AddToDoViewController: UIViewController {
         // Let firebase generate an ID for the new database entry
         let key = dbReference.child(userId+"/ToDos").childByAutoId().key
         
-        // Create new ToDo Object
+        // Create new ToDo Dictionary wiht Text and Unix Time values
         let newToDo = ["Text" : text, "Time" : dateUnix] as [String : Any]
         
         // Update database with new ToDo
         let update = ["\(userId)/ToDos/\(key)" : newToDo]
         dbReference.updateChildValues(update)
+        
+        // This gets the ToDo count value, then increments it.
+        dbReference.child(userId).child("Count").observeSingleEvent(of: .value, with: { snapshot in
+            if let count = snapshot.value as? Int {
+                let newCount = count + 1
+                dbReference.child(userId).child("Count").setValue(newCount)
+            }
+            else{
+                // Set to 1 if no ToDo has been added until now.
+                dbReference.child(userId).child("Count").setValue(1)
+            }
+        })
     }
 }
 
