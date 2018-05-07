@@ -32,6 +32,7 @@ class TodoListViewController: UITableViewController {
             let time = snapshotValue?["Time"] as? Int
             let post = snapshotValue?["Post"] as? Int
             self.todos.append(ToDo(Id: snapshot.key, Post: post, Text: text, Time: time))
+            self.todos.sort(by: {$0.Time < $1.Time})
             self.tableView.reloadData()
                 
         })
@@ -109,7 +110,6 @@ class TodoListViewController: UITableViewController {
         // Assign label values
         cell.dateLabel?.text = formattedDate
         cell.descriptionLabel?.text = todos[indexPath.row].Text
-        
         return cell
     }
     
