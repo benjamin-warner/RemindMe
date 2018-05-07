@@ -10,12 +10,12 @@ import UIKit
 import Firebase
 
 struct ToDo{
+    var Id: String
     var Text: String!
     var Time: Int!
 }
 
 class TodoListViewController: UITableViewController {
-
     var todos = [ToDo]()
     
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class TodoListViewController: UITableViewController {
             let snapshotValue = snapshot.value as? NSDictionary
             let text = snapshotValue?["Text"] as? String
             let time = snapshotValue?["Time"] as? Int
-            self.todos.append(ToDo(Text: text, Time: time))
+            self.todos.append(ToDo(Id: snapshot.key, Text: text, Time: time))
             self.tableView.reloadData()
                 
         })
@@ -44,6 +44,20 @@ class TodoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todos.count
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+    
+            // Remove from Firebase
+            let dbReference = Database.database().reference()
+            let userToDoDirectory: String = Auth.auth().currentUser!.uid + "/ToDos"
+            dbReference.child(userToDoDirectory).child(todos[indexPath.row].Id).removeValue()
+            
+            // Remove from local array
+            todos.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 
     override func tableView(_ tableView: UITableView,
@@ -60,5 +74,8 @@ class TodoListViewController: UITableViewController {
         cell.dateLabel?.text = formattedDate
         
         return cell
+    }
+    @IBAction func enableEditing(_ sender: Any) {
+        self.setEditing(!self.isEditing, animated: true)
     }
 }
