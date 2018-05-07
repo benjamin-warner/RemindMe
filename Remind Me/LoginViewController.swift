@@ -25,7 +25,7 @@ class LoginViewController: UIViewController {
             break
         case 1:
             newUser = true
-            LoginActionButton.setTitle("Signup", for: .normal)
+            LoginActionButton.setTitle("Register", for: .normal)
             break
         default:
             break
