@@ -11,6 +11,7 @@ import Firebase
 
 struct ToDo{
     var Id: String
+    var Post: Int!
     var Text: String!
     var Time: Int!
 }
@@ -29,7 +30,8 @@ class TodoListViewController: UITableViewController {
             let snapshotValue = snapshot.value as? NSDictionary
             let text = snapshotValue?["Text"] as? String
             let time = snapshotValue?["Time"] as? Int
-            self.todos.append(ToDo(Id: snapshot.key, Text: text, Time: time))
+            let post = snapshotValue?["Post"] as? Int
+            self.todos.append(ToDo(Id: snapshot.key, Post: post, Text: text, Time: time))
             self.tableView.reloadData()
                 
         })
@@ -41,7 +43,9 @@ class TodoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-    
+            let timeDifference = Int(NSDate().timeIntervalSince1970) - todos[indexPath.row].Post
+            updateAverageCompletionTime(newTime: timeDifference)
+            
             // Remove from Firebase
             let dbReference = Database.database().reference()
             let userToDoDirectory: String = Auth.auth().currentUser!.uid + "/ToDos"
@@ -73,6 +77,24 @@ class TodoListViewController: UITableViewController {
         })
     }
 
+    func updateAverageCompletionTime(newTime: Int){
+        // Get firebase Database reference, User ID
+        let dbReference = Database.database().reference()
+        let userId: String = Auth.auth().currentUser!.uid
+        
+        // This gets the ToDo count value, then increments it.
+        dbReference.child(userId).child("Average").observeSingleEvent(of: .value, with: { snapshot in
+            if let time = snapshot.value as? Int {
+                let average = (time + newTime) / 2
+                dbReference.child(userId).child("Average").setValue(average)
+            }
+            else{
+                // Set to 1 if no ToDo has been added until now.
+                dbReference.child(userId).child("Average").setValue(newTime)
+            }
+        })
+    }
+    
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Get a table cell

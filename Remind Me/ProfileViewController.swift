@@ -45,6 +45,21 @@ class ProfileViewController: UIViewController {
                 self.finishedCount.text = String(0)
             }
         })
+        
+        // Get Finished count
+        dbReference.child(userId).child("Average").observe(.value, with: { (snapshot) in
+            if let time = snapshot.value as? Int {
+                let (h,m,s) = self.secondsToHoursMinutesSeconds(seconds: time)
+                self.avgTime.text = "\(h)h\(m)m\(s)s"
+            }
+            else{
+                self.avgTime.text = "N/A"
+            }
+        })
+    }
+    
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
 
     override func didReceiveMemoryWarning() {

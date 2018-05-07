@@ -35,6 +35,7 @@ class AddToDoViewController: UIViewController {
         }
         // Get Unix Time of selected Date
         let dateUnix = Int(todoDate.date.timeIntervalSince1970)
+        let nowUnix = Int(NSDate().timeIntervalSince1970)
         
         // Get firebase Database reference, User ID
         let dbReference = Database.database().reference()
@@ -44,7 +45,7 @@ class AddToDoViewController: UIViewController {
         let key = dbReference.child(userId+"/ToDos").childByAutoId().key
         
         // Create new ToDo Dictionary wiht Text and Unix Time values
-        let newToDo = ["Text" : text, "Time" : dateUnix] as [String : Any]
+        let newToDo = ["Text" : text, "Time" : dateUnix, "Post" : nowUnix] as [String : Any]
         
         // Update database with new ToDo
         let update = ["\(userId)/ToDos/\(key)" : newToDo]
