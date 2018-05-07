@@ -35,6 +35,16 @@ class ProfileViewController: UIViewController {
                 self.currentCount.text = String(0)
             }
         })
+        
+        // Get Finished count
+        dbReference.child(userId).child("Finished").observe(.value, with: { (snapshot) in
+            if let count = snapshot.value as? Int {
+                self.finishedCount.text = String(count)
+            }
+            else{
+                self.finishedCount.text = String(0)
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {

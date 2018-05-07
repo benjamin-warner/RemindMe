@@ -33,13 +33,6 @@ class TodoListViewController: UITableViewController {
             self.tableView.reloadData()
                 
         })
-        
-//        // Listen for deleted todos in the Firebase database
-//        dbReference.observe(.childRemoved, with: { (snapshot) -> Void in
-//            let index = self.todos.indexOfMessage(snapshot)
-//            self.todos.remove(at: index)
-//            self.tableView.deleteRows(at: [IndexPath(row: index, section: self.kSectionComments)], with: UITableViewRowAnimation.automatic)
-//        })
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,24 +50,47 @@ class TodoListViewController: UITableViewController {
             // Remove from local array
             todos.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            incrementCompletedCount()
         }
+    }
+    
+    func incrementCompletedCount() {
+        // Get firebase Database reference, User ID
+        let dbReference = Database.database().reference()
+        let userId: String = Auth.auth().currentUser!.uid
+        
+        // This gets the ToDo count value, then increments it.
+        dbReference.child(userId).child("Finished").observeSingleEvent(of: .value, with: { snapshot in
+            if let count = snapshot.value as? Int {
+                let newCount = count + 1
+                dbReference.child(userId).child("Finished").setValue(newCount)
+            }
+            else{
+                // Set to 1 if no ToDo has been added until now.
+                dbReference.child(userId).child("Finished").setValue(1)
+            }
+        })
     }
 
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Get a table cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell", for: indexPath) as! ToDoTableViewCell
-        cell.descriptionLabel?.text = todos[indexPath.row].Text
         
         // Format date to string
         let date = Date(timeIntervalSince1970: Double(todos[indexPath.row].Time))
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         let formattedDate = formatter.string(from: date)
+        
+        // Assign label values
         cell.dateLabel?.text = formattedDate
+        cell.descriptionLabel?.text = todos[indexPath.row].Text
         
         return cell
     }
+    
     @IBAction func enableEditing(_ sender: Any) {
         self.setEditing(!self.isEditing, animated: true)
     }
